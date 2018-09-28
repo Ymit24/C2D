@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114697793266386584}
   - component: {fileID: 61702176122274374}
   - component: {fileID: 50032067948670314}
+  - component: {fileID: 114096904861621084}
   m_Layer: 0
   m_Name: light_tank
   m_TagString: Untagged
@@ -223,6 +224,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
+--- !u!114 &114096904861621084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313462301459262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a131c412dfcd834eacbf87fe38650dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114292967124494332
 MonoBehaviour:
   m_ObjectHideFlags: 1

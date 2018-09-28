@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70104d7e9a7c047f5baf5ed755dcc923, type: 3}
+  m_Name: Barracks
+  m_EditorClassIdentifier: 
+  cost: 100
+  prefab: {fileID: 1844461060222300, guid: 1c0f66d42c9471d4981ae4529ec72271, type: 2}

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UnitCreatorController : MonoBehaviour {
     public GameObject UnitPanel;
-    public GameObject[] Units;
+	public List<UnitData> Units;
 
     public UnitFactory current;
 
@@ -17,27 +17,33 @@ public class UnitCreatorController : MonoBehaviour {
     }
     private string unitname(int type)
     {
-        switch (type)
-        {
-            case 0:
-                return "Light Soldier";
-            case 1:
-                return "Heavy Soldier";
-            case 2:
-                return "Light Tank";
-            case 3:
-                return "Heavy Tank";
-            default:
-                return "DEFAULT " + type;
-        }
+		return Units [type].name;
+//        switch (type)
+//        {
+//            case 0:
+//                return "Light Soldier";
+//            case 1:
+//                return "Heavy Soldier";
+//            case 2:
+//                return "Light Tank";
+//            case 3:
+//                return "Heavy Tank";
+//            default:
+//                return "DEFAULT " + type;
+//        }
     }
 
     public void BuildUnit(int ab)
     {
         if (current == null)
             return;
-
-        Instantiate(Units[current.CanBuild[ab]], current.gameObject.transform.position + new Vector3(1, 1), Quaternion.identity);
+		int cost = Units [current.CanBuild [ab]].cost;
+		if (PlayerController.Data (0).money >= cost) {
+			PlayerController.Data (0).money -= cost;
+		} else {
+			return;
+		}
+		Instantiate(Units[current.CanBuild[ab]].prefab, current.gameObject.transform.position + new Vector3(1, 1), Quaternion.identity);
         UnitPanel.SetActive(false);
     }
 

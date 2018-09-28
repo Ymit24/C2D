@@ -51,9 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e766c51b55aec584fb16e781d725f5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildableBuildings:
-  - {fileID: 1348830534750206, guid: 35be0ad86deae0246ad1126600a34d28, type: 2}
-  - {fileID: 1844461060222300, guid: 1c0f66d42c9471d4981ae4529ec72271, type: 2}
-  - {fileID: 1266750801608242, guid: 179a65e67fceeef4ab5e13515d7528d8, type: 2}
+  Buildings:
+  - {fileID: 11400000, guid: cec4541c46edc4d15b3517f0de875c46, type: 2}
+  - {fileID: 11400000, guid: a6299e858d0c545caa85adb207cdc1e9, type: 2}
+  - {fileID: 11400000, guid: c79d7bd35ddef444a822a12668cce480, type: 2}
+  - {fileID: 11400000, guid: 11197fd749256400eb61fc2adfc2f572, type: 2}
   GhostBuilding: {fileID: 0}
   BuildPanel: {fileID: 0}

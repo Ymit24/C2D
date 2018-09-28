@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 114599427565203898}
   - component: {fileID: 61259666094349916}
   - component: {fileID: 50888262063868640}
+  - component: {fileID: 114399732911500312}
   m_Layer: 0
   m_Name: light_soldier
   m_TagString: Untagged
@@ -223,6 +224,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
+--- !u!114 &114399732911500312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994181395014310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a131c412dfcd834eacbf87fe38650dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114599427565203898
 MonoBehaviour:
   m_ObjectHideFlags: 1
