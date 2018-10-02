@@ -11,16 +11,18 @@ public class Requirements : MonoBehaviour {
 		{
 			for (int i = 0; i < ColliderCount; i++)
 			{
+                if (!colliders[i] is BoxCollider2D)
+                    continue; // we dont want to collide with an attack range, because that has no physical presence
 				if (colliders[i].gameObject == bc2d.gameObject) continue; // just incase we collide with our own colliders somehow
 				// if the ghost building is colliding with something
 				// like a wall or another building then bail.
-				if (colliders[i].CompareTag("Unplaceable")) return false;
+				if (colliders[i].CompareTag(Tags.UNPLACEABLE)) return false;
 			}
 		}
 		return true;
 	}
 	public static bool CanBuildUnit(int money, UnitData type)
 	{
-		return money >= type.cost;
+		return money >= type.Cost;
 	}
 }

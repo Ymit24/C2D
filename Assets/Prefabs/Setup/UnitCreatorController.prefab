@@ -33,7 +33,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632824842174768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -53,8 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitPanel: {fileID: 0}
   Units:
-  - {fileID: 1994181395014310, guid: efaf67a4a4085b149ab93f12f0ee84b7, type: 2}
-  - {fileID: 1251752665023068, guid: bd4a32e5b39994044b6888ad80b9d0cc, type: 2}
-  - {fileID: 1313462301459262, guid: 8d6008debca5a79478243897745d73d6, type: 2}
-  - {fileID: 1618076780874648, guid: 85f1c801f765ffd4fbb20be305c88955, type: 2}
+  - {fileID: 11400000, guid: 854ef2dc336064deab53a0d711f6f542, type: 2}
+  - {fileID: 11400000, guid: d3db1f0d47fd0499b95a978ad885c557, type: 2}
+  - {fileID: 11400000, guid: 8103d4baaf55241f9aaca1c03a837a70, type: 2}
+  - {fileID: 11400000, guid: 453c6da3f03d949aa9ff98c711eef275, type: 2}
   current: {fileID: 0}
+  UnitHolder: {fileID: 0}

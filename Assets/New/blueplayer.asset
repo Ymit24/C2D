@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: blueplayer
   m_EditorClassIdentifier: 
   color: {r: 0.33490568, g: 0.80538744, b: 1, a: 0}
-  money: 999999
-  number_of_power_plants: 1
+  money: 128620
+  number_of_power_plants: 1000

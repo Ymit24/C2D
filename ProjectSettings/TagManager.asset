@@ -8,6 +8,7 @@ TagManager:
   - Unplaceable
   - Healthbar
   - Crystal
+  - SelectedGraphic
   layers:
   - Default
   - TransparentFX
