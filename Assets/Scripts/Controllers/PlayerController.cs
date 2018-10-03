@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			foreach (PlayerData p in players)
 			{
-				p.money += p.number_of_power_plants * 10;
-			}
+				p.Money += p.Number_of_power_plants * 10;
+            }
 			powerPlantTimer.Reset ();
 		}
 	}

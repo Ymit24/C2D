@@ -14,8 +14,9 @@ MonoBehaviour:
   UnitName: Light Tank
   Cost: 15
   Graphic: {fileID: 21300012, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
+  Type: 2
   HealthbarHeight: 0.605
-  BoxColliderSize: {x: 0.5, y: 0.35}
+  BoxColliderSize: {x: 0.5, y: 0.25}
   SelectedGraphicSize: {x: 1, y: 1}
   MaxHealth: 100
   MaxHealthbarWidth: 1

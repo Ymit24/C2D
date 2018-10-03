@@ -17,7 +17,7 @@ MonoBehaviour:
   Graphic: {fileID: 21300000, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
   HealthbarHeight: 1
   BoxColliderSize: {x: 1, y: 1}
-  MaxHealth: 100
+  MaxHealth: 1000
   MaxHealthbarWidth: 2
   CanAttack: 1
   Range: 3

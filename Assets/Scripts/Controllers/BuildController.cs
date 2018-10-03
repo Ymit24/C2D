@@ -136,22 +136,26 @@ public class BuildController : MonoBehaviour {
 
 			if (isNearFriendlyBuilding == false && isPP == false) return; // Unless we are building a power plant
         }
-		if (PlayerController.Data (0).money <= Buildings [_buildType].Cost)
+		if (PlayerController.Data (0).Money < Buildings [_buildType].Cost)
 		{
 			return;
 		}
 		else
 		{
-			PlayerController.Data (0).money -= Buildings [_buildType].Cost;
+			PlayerController.Data (0).Money -= Buildings [_buildType].Cost;
 			if (isPP & isNearCrystal && nearCrystalHasAFreeSpot) {
 				if (crystal != null)
 					crystal.TeamsWhoHaveAPowerPlantHere.Add (0);
-				PlayerController.Data (0).number_of_power_plants++;
+				PlayerController.Data (0).Number_of_power_plants++;
 			}
         }
         bc2d.enabled = true;
-        GhostBuilding.GetComponent<Building>().EndGhostMode();
+        Building ghostbuilding = GhostBuilding.GetComponent<Building>();
+        ghostbuilding.EndGhostMode();
+        ghostbuilding.SetTeam(0);
         GhostBuilding = null;
         updateBuildState(0);
+        MapController.BuildingsPerPlayer[0].Add(ghostbuilding.Configuration.Type);
+        UIController.OnBuildingCountChanged(MapController.BuildingsPerPlayer[0].Count);
     }
 }

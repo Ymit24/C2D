@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebbe42d6fedd434097397c9e70ae5b4, type: 3}
   m_Name: blueplayer
   m_EditorClassIdentifier: 
-  color: {r: 0.33490568, g: 0.80538744, b: 1, a: 0}
-  money: 128620
-  number_of_power_plants: 1000
+  color: {r: 0.33490568, g: 0.80538744, b: 1, a: 1}
+  money: 4240
+  number_of_power_plants: 20

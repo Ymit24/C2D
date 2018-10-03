@@ -14,6 +14,7 @@ MonoBehaviour:
   UnitName: Heavy Soldier
   Cost: 10
   Graphic: {fileID: 21300010, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
+  Type: 1
   HealthbarHeight: 0.605
   BoxColliderSize: {x: 0.25, y: 0.25}
   SelectedGraphicSize: {x: 1, y: 1}

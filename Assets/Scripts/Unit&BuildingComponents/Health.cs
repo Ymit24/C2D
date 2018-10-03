@@ -15,6 +15,7 @@ public class Health : MonoBehaviour {
         {
             _value = value;
             Vector3 scale = Healthbar.localScale;
+            scale.x = MaxSize * Percentage;
             scale.y = 0.2f;
             Healthbar.localScale = scale;
         }

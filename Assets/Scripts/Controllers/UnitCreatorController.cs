@@ -18,17 +18,19 @@ public class UnitCreatorController : MonoBehaviour {
         UnitPanel.SetActive(false);
     }
 
-    public void BuildUnit(int ab)
+    public void BuildUnit(int index)
     {
         if (current == null)
             return;
-		int cost = Units [(int)current.CanBuild [ab]].Cost;
-		if (PlayerController.Data (0).money >= cost) {
-			PlayerController.Data (0).money -= cost;
+        if (index >= current.CanBuild.Count)
+            return;
+		int cost = Units [(int)current.CanBuild [index]].Cost;
+		if (PlayerController.Data (0).Money >= cost) {
+			PlayerController.Data (0).Money -= cost;
 		} else {
 			return;
 		}
-        GameObject newUnit = new GameObject("AwesomeUnit");
+        GameObject newUnit = new GameObject(UnitData.NameFromType(current.CanBuild[index]));
         newUnit.transform.SetParent(UnitHolder.transform);
         if (current != null)
         {
@@ -40,10 +42,16 @@ public class UnitCreatorController : MonoBehaviour {
         }
 
         Unit u = newUnit.AddComponent<Unit>();
-        u.Setup(Units[(int)current.CanBuild[ab]]);
+        u.Setup(Units[(int)current.CanBuild[index]]);
         //GameObject g = Instantiate(Units[current.CanBuild[ab]].prefab, current.gameObject.transform.position + new Vector3(1, 1), Quaternion.identity);
         u.SetTeam(0);
         UnitPanel.SetActive(false);
+        UnitType type = u.Configuration.Type;
+        MapController.UnitsPerPlayer[0].Add(type);
+        if (UnitData.isSoldier(type))
+            UIController.OnSoldierCountChanged(MapController.SoldierCount(0));
+        if (UnitData.isTank(type))
+            UIController.OnTankCountChanged(MapController.TankCount(0));
     }
 
     private void OnClick(int button, Vector2 position)
@@ -67,8 +75,18 @@ public class UnitCreatorController : MonoBehaviour {
             if (current == null)
                 return;
             Button[] ubb = UnitPanel.GetComponentsInChildren<Button>();
-            for (int i = 0; i < ubb.Length; i++)
+            if (ubb.Length > current.CanBuild.Count)
             {
+                //TODO: remove extra buttons
+            }
+            else if (ubb.Length < current.CanBuild.Count)
+            {
+                //TODO: add missing buttons
+            }
+            for (int i = 0; i < current.CanBuild.Count; i++)
+            {
+                if (i == ubb.Length)
+                    break; // more units then buttons, FIXME: this should be removed once prior two TODOs are implemented.
                 Text text = ubb[i].GetComponentInChildren<Text>();
                 if (text != null) {
                     text.text = UnitData.NameFromType(current.CanBuild[i]);

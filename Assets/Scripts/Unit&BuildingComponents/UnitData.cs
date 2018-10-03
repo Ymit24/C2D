@@ -11,6 +11,7 @@ public class UnitData : ScriptableObject
     public string UnitName;
     public int Cost;
     public Sprite Graphic;
+    public UnitType Type;
 
     [Header("Settings")]
     public float HealthbarHeight;
@@ -45,5 +46,15 @@ public class UnitData : ScriptableObject
             default:
                 return "No Unit Name";
         }
+    }
+
+    public static bool isSoldier(UnitType type)
+    {
+        return type == UnitType.LightSoldier || type == UnitType.HeavySoldier;
+    }
+
+    public static bool isTank(UnitType type)
+    {
+        return type == UnitType.LightTank|| type == UnitType.HeavyTank;
     }
 }

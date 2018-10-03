@@ -86,6 +86,17 @@ public class Building : MonoBehaviour
         {
             o.Team = team;
         }
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).CompareTag(Tags.HEALTHBAR))
+            {
+                SpriteRenderer spr = transform.GetChild(i).GetComponent<SpriteRenderer>();
+                if (spr != null)
+                {
+                    spr.color = PlayerController.Data(team).color;
+                }
+            }
+        }
     }
 
     private void Begin()
