@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: greenplayer
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.745283, b: 0.11982977, a: 1}
-  money: 100
-  number_of_power_plants: 10
+  money: 9999
+  number_of_power_plants: 99

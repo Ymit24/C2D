@@ -51,6 +51,6 @@ public class CameraController : MonoBehaviour {
         float v = delta;
         Camera.main.orthographicSize += v * ZoomSpeed * Time.deltaTime;
 
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 8);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 15);
     }
 }

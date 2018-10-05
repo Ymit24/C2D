@@ -8,4 +8,7 @@ public class Tags {
     public static string UNPLACEABLE = "Unplaceable";
     public static string CRYSTAL = "Crystal";
     public static string HEALTHBAR = "Healthbar";
+    public static string PLAYERSPAWNS = "PlayerSpawns";
+    public static string UNITSPAWN = "UnitSpawn";
+    public static string COMMANDCENTERSPAWN = "CommandCenterSpawn";
 }

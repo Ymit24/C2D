@@ -13,9 +13,13 @@ public class BuildController : MonoBehaviour {
 
     public GameObject BuildPanel;
     public GameObject BuildingHolder;
-
-    private void Start()
+    private static BuildController _instance;
+    private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
         updateBuildState(0);
     }
 
@@ -78,20 +82,30 @@ public class BuildController : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 { /*  CONFIRM BUILD AND PLACE BUILDING  */
                     // somehow check to see if this is a valid location
-                    PlaceBuildingIfValid();
-                    
+                    PlaceBuildingIfValid(GhostBuilding, 0);
+                    GhostBuilding = null;
                 }
                 break;
         }
     }
 
-    private void PlaceBuildingIfValid()
+    public static void PlaceBuilding(BuildingType type, Vector3 location, int owner)
     {
-		BoxCollider2D bc2d = GhostBuilding.GetComponent<BoxCollider2D> ();
+        GameObject building = new GameObject(BuildingData.NameFromType(type));
+        building.transform.SetParent(_instance.BuildingHolder.transform);
+        building.tag = Tags.UNPLACEABLE;
+        building.AddComponent<Building>().StartGhostMode(_instance.Buildings[(int)type]);
+        building.transform.position = location;
+        _instance.PlaceBuildingIfValid(building, owner);
+    }
+
+    private bool PlaceBuildingIfValid(GameObject building, int team)
+    {
+		BoxCollider2D bc2d = building.GetComponent<BoxCollider2D> ();
 		if (bc2d != null) {
 			bc2d.enabled = true;
-			if (!Requirements.CanFitBuildingAt (bc2d, GhostBuilding.transform.position, Buildings [_buildType]))
-				return;
+			if (!Requirements.CanFitBuildingAt (bc2d, building.transform.position, Buildings [_buildType]))
+				return false;
 			bc2d.enabled = false;
 		}
 
@@ -99,7 +113,7 @@ public class BuildController : MonoBehaviour {
         // e.g. PowerPlant requires an unused (by this owner) crystal to be close and
         // a friendly unit to be close
         // ALL buildings (besides PP) require a friendly building to be near
-        Collider2D[] cols = Physics2D.OverlapCircleAll(GhostBuilding.transform.position, 1.5f);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(building.transform.position, 1.5f);
         bool isNearFriendlyBuilding = false;
 		bool isNearFriendlyUnit = false;
 		bool isNearCrystal = false;
@@ -114,48 +128,51 @@ public class BuildController : MonoBehaviour {
 			Unit u = cols[i].GetComponent<Unit>();
 			if (!isNearCrystal && !nearCrystalHasAFreeSpot) {
 				crystal = cols[i].GetComponent<Crystal>();
-				if (crystal != null && !crystal.TeamsWhoHaveAPowerPlantHere.Contains (0))
+				if (crystal != null && !crystal.TeamsWhoHaveAPowerPlantHere.Contains (team))
 					nearCrystalHasAFreeSpot = true;
 			}
 			if (cols[i].CompareTag(Tags.CRYSTAL)) isNearCrystal = true;
-			if (u != null && o != null && o.Team == 0) { isNearFriendlyUnit = true; }
-            if (o != null && o.Team == 0 && b != null)
+			if (u != null && o != null && o.Team == team) { isNearFriendlyUnit = true; }
+            if (o != null && o.Team == team && b != null)
             {
                 isNearFriendlyBuilding = true;
             }
         }
-        Building GB = GhostBuilding.GetComponent<Building>();
+        Building GB = building.GetComponent<Building>();
         bool isCC = GB != null && GB.Configuration.Type == BuildingType.CommandCenter;
 		bool isPP = GB != null && GB.Configuration.Type == BuildingType.PowerPlant;
         if (!isCC)
         {
 			if (isPP && (!isNearFriendlyUnit || !isNearCrystal || !nearCrystalHasAFreeSpot)) {
 				// look for a friendly unit and crystall
-				return;
+				return false;
 			}
 
-			if (isNearFriendlyBuilding == false && isPP == false) return; // Unless we are building a power plant
+			if (isNearFriendlyBuilding == false && isPP == false) return false; // Unless we are building a power plant
         }
-		if (PlayerController.Data (0).Money < Buildings [_buildType].Cost)
+		if (PlayerController.Data (team).Money < Buildings [_buildType].Cost)
 		{
-			return;
+			return false;
 		}
 		else
 		{
-			PlayerController.Data (0).Money -= Buildings [_buildType].Cost;
+			PlayerController.Data (team).Money -= Buildings [_buildType].Cost;
 			if (isPP & isNearCrystal && nearCrystalHasAFreeSpot) {
 				if (crystal != null)
-					crystal.TeamsWhoHaveAPowerPlantHere.Add (0);
-				PlayerController.Data (0).Number_of_power_plants++;
+					crystal.TeamsWhoHaveAPowerPlantHere.Add (team);
+				PlayerController.Data (team).Number_of_power_plants++;
 			}
         }
         bc2d.enabled = true;
-        Building ghostbuilding = GhostBuilding.GetComponent<Building>();
+        Building ghostbuilding = building.GetComponent<Building>();
         ghostbuilding.EndGhostMode();
-        ghostbuilding.SetTeam(0);
-        GhostBuilding = null;
+        ghostbuilding.SetTeam(team);
         updateBuildState(0);
-        MapController.BuildingsPerPlayer[0].Add(ghostbuilding.Configuration.Type);
-        UIController.OnBuildingCountChanged(MapController.BuildingsPerPlayer[0].Count);
+        MapController.BuildingsPerPlayer[team].Add(ghostbuilding.Configuration.Type);
+        if (team == 0)
+        {
+            UIController.OnBuildingCountChanged(MapController.BuildingsPerPlayer[team].Count);
+        }
+        return true;
     }
 }

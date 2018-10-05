@@ -56,7 +56,12 @@
      <Compile Include="Assets\Crystal.cs" />
      <Compile Include="Assets\New\ActivateBuilding.cs" />
      <Compile Include="Assets\New\AI TESTING\Utility.cs" />
+     <Compile Include="Assets\New\Fade.cs" />
+     <Compile Include="Assets\New\Map\MapConfiguration.cs" />
+     <Compile Include="Assets\New\MapLoader.cs" />
+     <Compile Include="Assets\New\MenuController.cs" />
      <Compile Include="Assets\New\PlaySound.cs" />
+     <Compile Include="Assets\New\TestFade.cs" />
      <Compile Include="Assets\Scripts\Controllers\BuildController.cs" />
      <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
      <Compile Include="Assets\Scripts\Controllers\MapController.cs" />

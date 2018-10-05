@@ -1,21 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\New\PlaySound.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Controllers\BuildController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit&amp;BuildingComponents\Building.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Requirements.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Controllers\UnitCreatorController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit&amp;BuildingComponents\UnitData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit&amp;BuildingComponents\BuildingData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit&amp;BuildingComponents\Unit.cs" Line="1" Column="1" />
-      <File FileName="Assets\New\PlaySound.cs" Line="11" Column="23" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Dev\git\C2D\Assets\Scripts\Requirements.cs" line="8" column="8" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -10,14 +10,30 @@ public class UnitCreatorController : MonoBehaviour {
     public UnitFactory current;
 
     public GameObject UnitHolder;
-
+    private static UnitCreatorController _instance;
     private int deselect;
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+    }
     private void Start()
     {
         MouseController.MouseClickDownListeners += OnClick;
         UnitPanel.SetActive(false);
     }
-
+    public static void PlaceUnit(UnitType type, Vector3 location, int owner)
+    {
+        GameObject newUnit = new GameObject(UnitData.NameFromType(type));
+        newUnit.transform.SetParent(_instance.UnitHolder.transform);
+        newUnit.transform.position = location;
+        Unit u = newUnit.AddComponent<Unit>();
+        u.Setup(_instance.Units[(int)type]);
+        u.SetTeam(owner);
+        MapController.UnitsPerPlayer[owner].Add(type);
+    }
     public void BuildUnit(int index)
     {
         if (current == null)

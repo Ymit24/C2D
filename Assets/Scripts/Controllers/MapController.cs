@@ -7,8 +7,7 @@ public class MapController : MonoBehaviour {
     public static List<BuildingType>[] BuildingsPerPlayer;
     public static List<UnitType>[] UnitsPerPlayer;
 
-    public int PlayerCount; // TODO: implement a map configuration scriptable object with this in it
-
+    private MapConfiguration Config;
     private void Awake()
     {
         if (_instance == null)
@@ -20,13 +19,14 @@ public class MapController : MonoBehaviour {
             Debug.LogWarning("MapController already exists!");
             Destroy(this);
         }
+        Config = Transform.FindObjectOfType<MapConfiguration>();
     }
     private void Start()
     {
-        BuildingsPerPlayer = new List<BuildingType>[PlayerCount];
-        UnitsPerPlayer = new List<UnitType>[PlayerCount];
+        BuildingsPerPlayer = new List<BuildingType>[Config.PlayerCount];
+        UnitsPerPlayer = new List<UnitType>[Config.PlayerCount];
 
-        for (int i = 0; i < PlayerCount; i++)
+        for (int i = 0; i < Config.PlayerCount; i++)
         {
             BuildingsPerPlayer[i] = new List<BuildingType>();
             UnitsPerPlayer[i] = new List<UnitType>();
@@ -35,7 +35,7 @@ public class MapController : MonoBehaviour {
 
     public static int SoldierCount(int team)
     {
-        if (team < 0 || team >= _instance.PlayerCount)
+        if (team < 0 || team >= _instance.Config.PlayerCount)
             return -1;
         int count = 0;
         foreach (UnitType type in UnitsPerPlayer[team])
@@ -48,7 +48,7 @@ public class MapController : MonoBehaviour {
 
     public static int TankCount(int team)
     {
-        if (team < 0 || team >= _instance.PlayerCount)
+        if (team < 0 || team >= _instance.Config.PlayerCount)
             return -1;
         int count = 0;
         foreach (UnitType type in UnitsPerPlayer[team])

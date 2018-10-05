@@ -9,6 +9,9 @@ TagManager:
   - Healthbar
   - Crystal
   - SelectedGraphic
+  - PlayerSpawns
+  - UnitSpawn
+  - CommandCenterSpawn
   layers:
   - Default
   - TransparentFX
