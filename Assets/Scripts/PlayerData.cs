@@ -5,18 +5,18 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject {
 	public Color color;
-    public int money;
+    public int gold;
 
-    public int Money
+    public int Gold
     {
         get
         {
-            return money;
+            return gold;
         }
         set
         {
-            money = value;
-            UIController.OnGoldCountChanged(value);
+            gold = value;
+            PlayerController.GoldChanged(this);
         }
     }
 
@@ -31,7 +31,15 @@ public class PlayerData : ScriptableObject {
         set
         {
             number_of_power_plants = value;
-            UIController.OnGPMCountChanged(number_of_power_plants*10);
+            PlayerController.GPMChanged(this);
+        }
+    }
+
+    public int GPM
+    {
+        get 
+        {
+            return Number_of_power_plants * 10 + 25; // 25 is a base GPM
         }
     }
 }

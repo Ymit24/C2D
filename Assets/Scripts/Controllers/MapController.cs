@@ -7,6 +7,11 @@ public class MapController : MonoBehaviour {
     public static List<BuildingType>[] BuildingsPerPlayer;
     public static List<UnitType>[] UnitsPerPlayer;
 
+    public static GameObject Map;
+    public static AstarPath Pathfinder;
+    public GameObject UnitHolder;
+    public GameObject BuildingHolder;
+
     private MapConfiguration Config;
     private void Awake()
     {
@@ -57,5 +62,29 @@ public class MapController : MonoBehaviour {
                 count++;
         }
         return count;
+    }
+
+    public static Building[] AllBuildings()
+    {
+        List<Building> buildings = new List<Building>();
+        for (int i = 0; i < _instance.BuildingHolder.transform.childCount; i++)
+        {
+            buildings.Add(_instance.BuildingHolder.transform.GetChild(i).GetComponent<Building>());
+        }
+        return buildings.ToArray();
+    }
+
+    public static Unit[] UnitsForTeam(int team)
+    {
+        List<Unit> units = new List<Unit>();
+        for (int i = 0; i < _instance.UnitHolder.transform.childCount; i++)
+        {
+            int iteam = _instance.UnitHolder.transform.GetChild(i).GetComponent<Owned>().Team;
+            if (iteam == team)
+            {
+                units.Add(_instance.UnitHolder.transform.GetChild(i).GetComponent<Unit>());
+            }
+        }
+        return units.ToArray();
     }
 }

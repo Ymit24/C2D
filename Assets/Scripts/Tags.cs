@@ -11,4 +11,6 @@ public class Tags {
     public static string PLAYERSPAWNS = "PlayerSpawns";
     public static string UNITSPAWN = "UnitSpawn";
     public static string COMMANDCENTERSPAWN = "CommandCenterSpawn";
+    public static string CRYSTALS = "Crystals";
+    public static string ASTAR = "AStar";
 }

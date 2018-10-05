@@ -41,8 +41,8 @@ public class UnitCreatorController : MonoBehaviour {
         if (index >= current.CanBuild.Count)
             return;
 		int cost = Units [(int)current.CanBuild [index]].Cost;
-		if (PlayerController.Data (0).Money >= cost) {
-			PlayerController.Data (0).Money -= cost;
+		if (PlayerController.Data (0).Gold >= cost) {
+			PlayerController.Data (0).Gold -= cost;
 		} else {
 			return;
 		}

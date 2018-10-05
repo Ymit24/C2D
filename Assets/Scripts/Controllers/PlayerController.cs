@@ -27,9 +27,21 @@ public class PlayerController : MonoBehaviour {
 		{
 			foreach (PlayerData p in players)
 			{
-				p.Money += p.Number_of_power_plants * 10;
+				p.Gold += p.Number_of_power_plants * 10;
             }
 			powerPlantTimer.Reset ();
 		}
 	}
+
+    public static void GoldChanged(PlayerData data)
+    {
+        if (instance.players.IndexOf(data) != 0) return;
+        UIController.OnGoldCountChanged(instance.players[0].Gold);
+    }
+
+    public static void GPMChanged(PlayerData data)
+    {
+        if (instance.players.IndexOf(data) != 0) return;
+        UIController.OnGPMCountChanged(instance.players[0].GPM);
+    }
 }

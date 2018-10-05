@@ -527,9 +527,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114099497318864414, guid: 15f4961afebdad9439b93b94e18fc533,
         type: 2}
-      propertyPath: PlayerCount
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: UnitHolder
+      value: 
+      objectReference: {fileID: 1751722768}
+    - target: {fileID: 114099497318864414, guid: 15f4961afebdad9439b93b94e18fc533,
+        type: 2}
+      propertyPath: BuildingHolder
+      value: 
+      objectReference: {fileID: 476490782}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f4961afebdad9439b93b94e18fc533, type: 2}
   m_IsPrefabAsset: 0
@@ -904,22 +909,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866844373}
   m_CullTransparentMesh: 0
---- !u!1 &892714389 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1057477336059894, guid: 095cca863211d0342b6e0cf227acabe3,
-    type: 2}
-  m_PrefabInternal: {fileID: 2076090538}
---- !u!114 &892714390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 892714389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6669ae55db9315b43bc0c3bcf9418bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &967961810
 Prefab:
   m_ObjectHideFlags: 0
@@ -2004,7 +1993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Alpha 5
+  m_Text: Alpha 6
 --- !u!222 &1669472080
 CanvasRenderer:
   m_ObjectHideFlags: 0

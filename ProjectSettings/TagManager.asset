@@ -12,6 +12,8 @@ TagManager:
   - PlayerSpawns
   - UnitSpawn
   - CommandCenterSpawn
+  - Crystals
+  - AStar
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Unplaceable
   - 
   - 
   - 

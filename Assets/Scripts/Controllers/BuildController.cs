@@ -82,21 +82,55 @@ public class BuildController : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 { /*  CONFIRM BUILD AND PLACE BUILDING  */
                     // somehow check to see if this is a valid location
-                    PlaceBuildingIfValid(GhostBuilding, 0);
-                    GhostBuilding = null;
+                    if (PlaceBuildingIfValid(GhostBuilding, 0))
+                    {
+                        GhostBuilding = null;
+                    }
                 }
                 break;
         }
     }
 
-    public static void PlaceBuilding(BuildingType type, Vector3 location, int owner)
+    public static Building PlaceBuilding(BuildingType type, Vector3 location, int owner)
+    {
+        bool _;
+        return PlaceBuilding(type, location, owner, out _);
+    }
+
+    public static Building PlaceBuilding(BuildingType type, Vector3 location, int owner, out bool success)
     {
         GameObject building = new GameObject(BuildingData.NameFromType(type));
         building.transform.SetParent(_instance.BuildingHolder.transform);
         building.tag = Tags.UNPLACEABLE;
+        building.layer = LayerMask.NameToLayer(Tags.UNPLACEABLE);
         building.AddComponent<Building>().StartGhostMode(_instance.Buildings[(int)type]);
         building.transform.position = location;
-        _instance.PlaceBuildingIfValid(building, owner);
+        success = _instance.PlaceBuildingIfValid(building, owner);
+        if (success)
+        {
+            SetAllBuildingsCircleColliders(false);
+            MapController.Pathfinder.Scan();
+            SetAllBuildingsCircleColliders(true);
+        }
+        else
+        {
+            Destroy(building);
+            return null;
+        }
+        return building.GetComponent<Building>();
+    }
+
+    private static void SetAllBuildingsCircleColliders(bool value)
+    {
+        Building[] all = MapController.AllBuildings();
+        for (int i = 0; i < all.Length; i++)
+        {
+            Attack a = all[i].GetComponent<Attack>();
+            if (a != null)
+            {
+                a.SetCircleCollider(value);
+            }
+        }
     }
 
     private bool PlaceBuildingIfValid(GameObject building, int team)
@@ -113,7 +147,7 @@ public class BuildController : MonoBehaviour {
         // e.g. PowerPlant requires an unused (by this owner) crystal to be close and
         // a friendly unit to be close
         // ALL buildings (besides PP) require a friendly building to be near
-        Collider2D[] cols = Physics2D.OverlapCircleAll(building.transform.position, 1.5f);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(building.transform.position, 0.75f);
         bool isNearFriendlyBuilding = false;
 		bool isNearFriendlyUnit = false;
 		bool isNearCrystal = false;
@@ -150,13 +184,13 @@ public class BuildController : MonoBehaviour {
 
 			if (isNearFriendlyBuilding == false && isPP == false) return false; // Unless we are building a power plant
         }
-		if (PlayerController.Data (team).Money < Buildings [_buildType].Cost)
+		if (PlayerController.Data (team).Gold < Buildings [_buildType].Cost)
 		{
 			return false;
 		}
 		else
 		{
-			PlayerController.Data (team).Money -= Buildings [_buildType].Cost;
+			PlayerController.Data (team).Gold -= Buildings [_buildType].Cost;
 			if (isPP & isNearCrystal && nearCrystalHasAFreeSpot) {
 				if (crystal != null)
 					crystal.TeamsWhoHaveAPowerPlantHere.Add (team);

@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Unit : MonoBehaviour {
     public UnitData Configuration;
     private Attack AttackComp;
+    private Owned owned;
+    private AIPath Ai;
 
 	public void Setup (UnitData Config) {
         Configuration = Config;
@@ -46,7 +49,7 @@ public class Unit : MonoBehaviour {
         spr.sprite = Configuration.Graphic;
 
         // add owned component
-        gameObject.AddComponent<Owned>();
+        owned = gameObject.AddComponent<Owned>();
 
         // Health
         GameObject hb = new GameObject("Healthbar");
@@ -69,10 +72,9 @@ public class Unit : MonoBehaviour {
 
     public void SetTeam(int team)
     {
-        Owned o = GetComponent<Owned>();
-        if (o != null)
+        if (owned != null)
         {
-            o.Team = team;
+            owned.Team = team;
         }
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -84,6 +86,19 @@ public class Unit : MonoBehaviour {
                     spr.color = PlayerController.Data(team).color;
                 }
             }
+        }
+
+        if (team != 0)
+        {
+            // Add pathfinding components
+            Ai = gameObject.AddComponent<AIPath>();
+            Ai.pickNextWaypointDist = 2f;
+            Ai.rotationIn2D = true;
+            Ai.gravity = Vector3.zero;
+            Ai.updateRotation = false;
+            Ai.constrainInsideGraph = true;
+            Ai.maxSpeed = Configuration.MoveSpeed;
+            //rig2d.constraints = RigidbodyConstraints2D.None;
         }
     }
 
@@ -133,18 +148,33 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    void Update()
+    public void SetMoveTarget(Vector3 target)
     {
-        // Movement
-        if (Vector3.Distance(transform.position, moveTarget) > 0.75f)
+        if (owned.Team == 0)
         {
-            Vector3 move = (moveTarget - transform.position).normalized * MoveSpeed * Time.deltaTime;
-            rig2d.MovePosition(transform.position + move);
+            moveTarget = target;
         }
         else
         {
-            moveTarget = transform.position;
-            rig2d.velocity = Vector2.zero;
+            Ai.destination = target;
+        }
+    }
+
+    void Update()
+    {
+        // Movement
+        if (owned.Team == 0)
+        {
+            if (Vector3.Distance(transform.position, moveTarget) > 0.75f)
+            {
+                Vector3 move = (moveTarget - transform.position).normalized * MoveSpeed * Time.deltaTime;
+                rig2d.MovePosition(transform.position + move);
+            }
+            else
+            {
+                moveTarget = transform.position;
+                rig2d.velocity = Vector2.zero;
+            }
         }
 
         // Selectability
@@ -172,6 +202,8 @@ public class Unit : MonoBehaviour {
         }
         if (col.CompareTag(Tags.SELECTION_BOX))
         {
+            if (owned.Team != 0)
+                return;
             IsSelected = true;
         }
     }

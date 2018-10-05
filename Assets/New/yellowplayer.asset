@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: yellowplayer
   m_EditorClassIdentifier: 
   color: {r: 0.99277985, g: 1, b: 0.3254717, a: 1}
-  money: 999999
-  number_of_power_plants: 99
+  gold: 10
+  number_of_power_plants: 2

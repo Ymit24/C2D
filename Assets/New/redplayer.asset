@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: redplayer
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0.2216981, b: 0.2216981, a: 1}
-  money: 9999
-  number_of_power_plants: 99
+  gold: 160
+  number_of_power_plants: 1

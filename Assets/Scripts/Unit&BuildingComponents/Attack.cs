@@ -20,6 +20,11 @@ public class Attack : MonoBehaviour {
         attack_timer = new Timer(1f / AttacksPerSecond);
     }
 
+    public void SetCircleCollider(bool enable)
+    {
+        GetComponent<CircleCollider2D>().enabled = enable;
+    }
+
     private void Update()
     {
         if (Target == null)
