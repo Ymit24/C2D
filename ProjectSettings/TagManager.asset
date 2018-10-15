@@ -14,6 +14,7 @@ TagManager:
   - CommandCenterSpawn
   - Crystals
   - AStar
+  - Projectile
   layers:
   - Default
   - TransparentFX

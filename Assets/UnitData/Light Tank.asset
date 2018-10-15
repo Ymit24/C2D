@@ -11,16 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7515c1c75c8cb4a5eb5cf1ae79f878f4, type: 3}
   m_Name: Light Tank
   m_EditorClassIdentifier: 
-  UnitName: Light Tank
+  Name: 
   Cost: 15
   Graphic: {fileID: 21300012, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
-  Type: 2
   HealthbarHeight: 0.605
   BoxColliderSize: {x: 0.5, y: 0.25}
-  SelectedGraphicSize: {x: 1, y: 1}
   MaxHealth: 100
   MaxHealthbarWidth: 1
   MoveSpeed: 3
+  CombatEnabled: 1
   Range: 5
   Damage: 3
   AttacksPerSecond: 1
+  Projectile: {fileID: 1723433018831822, guid: c03a159bad82c5242901f960cdeb7ec7, type: 2}
+  Type: 2
+  SelectedGraphicSize: {x: 1, y: 1}

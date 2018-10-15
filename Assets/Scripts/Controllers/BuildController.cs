@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C2D.Event;
 
 public class BuildController : MonoBehaviour {
 
@@ -48,7 +49,7 @@ public class BuildController : MonoBehaviour {
                 }
                 GhostBuilding = new GameObject(BuildingData.NameFromType(Buildings[_buildType].Type));
                 GhostBuilding.transform.SetParent(BuildingHolder.transform);
-                GhostBuilding.tag = Tags.UNPLACEABLE;
+                GhostBuilding.tag = TAGS.Unplaceable.ToString();
                 GhostBuilding.AddComponent<Building>().StartGhostMode(Buildings[_buildType]);
 	                break;
         }
@@ -77,7 +78,7 @@ public class BuildController : MonoBehaviour {
                     updateBuildState(0);
                     break;
                 }
-                Vector2 pos = MouseController.calculateMousePosition();
+                Vector2 pos = MouseController.CalculateMousePosition();
                 GhostBuilding.transform.position = pos;
                 if (Input.GetMouseButtonDown(0))
                 { /*  CONFIRM BUILD AND PLACE BUILDING  */
@@ -101,16 +102,14 @@ public class BuildController : MonoBehaviour {
     {
         GameObject building = new GameObject(BuildingData.NameFromType(type));
         building.transform.SetParent(_instance.BuildingHolder.transform);
-        building.tag = Tags.UNPLACEABLE;
-        building.layer = LayerMask.NameToLayer(Tags.UNPLACEABLE);
+        building.tag = TAGS.Unplaceable.ToString();
+        building.layer = LayerMask.NameToLayer(TAGS.Unplaceable.ToString());
         building.AddComponent<Building>().StartGhostMode(_instance.Buildings[(int)type]);
         building.transform.position = location;
         success = _instance.PlaceBuildingIfValid(building, owner);
         if (success)
         {
-            SetAllBuildingsCircleColliders(false);
             MapController.Pathfinder.Scan();
-            SetAllBuildingsCircleColliders(true);
         }
         else
         {
@@ -118,19 +117,6 @@ public class BuildController : MonoBehaviour {
             return null;
         }
         return building.GetComponent<Building>();
-    }
-
-    private static void SetAllBuildingsCircleColliders(bool value)
-    {
-        Building[] all = MapController.AllBuildings();
-        for (int i = 0; i < all.Length; i++)
-        {
-            Attack a = all[i].GetComponent<Attack>();
-            if (a != null)
-            {
-                a.SetCircleCollider(value);
-            }
-        }
     }
 
     private bool PlaceBuildingIfValid(GameObject building, int team)
@@ -147,7 +133,7 @@ public class BuildController : MonoBehaviour {
         // e.g. PowerPlant requires an unused (by this owner) crystal to be close and
         // a friendly unit to be close
         // ALL buildings (besides PP) require a friendly building to be near
-        Collider2D[] cols = Physics2D.OverlapCircleAll(building.transform.position, 0.75f);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(building.transform.position, 1.5f);
         bool isNearFriendlyBuilding = false;
 		bool isNearFriendlyUnit = false;
 		bool isNearCrystal = false;
@@ -165,7 +151,7 @@ public class BuildController : MonoBehaviour {
 				if (crystal != null && !crystal.TeamsWhoHaveAPowerPlantHere.Contains (team))
 					nearCrystalHasAFreeSpot = true;
 			}
-			if (cols[i].CompareTag(Tags.CRYSTAL)) isNearCrystal = true;
+            if (Tags.Compare(cols[i].transform, TAGS.Crystal)) isNearCrystal = true;
 			if (u != null && o != null && o.Team == team) { isNearFriendlyUnit = true; }
             if (o != null && o.Team == team && b != null)
             {
@@ -205,7 +191,7 @@ public class BuildController : MonoBehaviour {
         MapController.BuildingsPerPlayer[team].Add(ghostbuilding.Configuration.Type);
         if (team == 0)
         {
-            UIController.OnBuildingCountChanged(MapController.BuildingsPerPlayer[team].Count);
+			EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.BUILDING_TEXT, MapController.BuildingsPerPlayer[team].Count));
         }
         return true;
     }

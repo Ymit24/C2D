@@ -8,10 +8,10 @@ public class MapLoader : MonoBehaviour {
     {
         Config = Transform.FindObjectOfType<MapConfiguration>();
         GameObject map = Instantiate(Config.mapPrefabs[Config.SelectedMap]);
-        MapController.Pathfinder = Utils.findChild(map.transform, Tags.ASTAR).GetComponent<AstarPath>();
+        MapController.Pathfinder = Utils.findChild(map.transform, TAGS.AStar).GetComponent<AstarPath>();
         MapController.Map = map;
         // Spawn a command center and units for each team
-        Transform playerspawns = Utils.findChild(map.transform, Tags.PLAYERSPAWNS);
+        Transform playerspawns = Utils.findChild(map.transform, TAGS.PlayerSpawns);
         int team = 1;
 
 //        GameObject go = new GameObject("SimpleAI");
@@ -21,8 +21,8 @@ public class MapLoader : MonoBehaviour {
         {
             if (i >= Config.PlayerCount)
                 break; // we don't need to process more spawn points then players
-            Transform commandcenterspawn = Utils.findChild(playerspawns.GetChild(i), Tags.COMMANDCENTERSPAWN);
-            Transform[] unitspawns = Utils.findChildren(playerspawns.GetChild(i), Tags.UNITSPAWN);
+            Transform commandcenterspawn = Utils.findChild(playerspawns.GetChild(i), TAGS.CommandCenterSpawn);
+            Transform[] unitspawns = Utils.findChildren(playerspawns.GetChild(i), TAGS.UnitSpawn);
             if (i == Config.SpawnPoint)
             {
                 Vector3 location = commandcenterspawn.position;
@@ -43,7 +43,7 @@ public class MapLoader : MonoBehaviour {
                 // spawn units
                 UnitCreatorController.PlaceUnit(UnitType.LightSoldier, unitspawns[j].position, (i == Config.SpawnPoint) ? 0 : team);
             }
-            PlayerController.Data(i).Gold = 300;
+            PlayerController.Data(i).Gold = 500;
             PlayerController.Data(i).Number_of_power_plants = 0;
             if (i != Config.SpawnPoint)
                 team++;

@@ -11,17 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70104d7e9a7c047f5baf5ed755dcc923, type: 3}
   m_Name: CommandCenter
   m_EditorClassIdentifier: 
-  BuildingName: Command Center
-  Type: 0
+  Name: 
   Cost: 100
-  Graphic: {fileID: 21300000, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
+  Graphic: {fileID: 21300126, guid: c6109c0fc9732c8469aa67a63d49921e, type: 3}
   HealthbarHeight: 1
   BoxColliderSize: {x: 1, y: 1}
   MaxHealth: 1000
   MaxHealthbarWidth: 2
-  CanAttack: 1
+  CombatEnabled: 1
   Range: 3
   Damage: 5
   AttacksPerSecond: 1
+  Projectile: {fileID: 1723433018831822, guid: c03a159bad82c5242901f960cdeb7ec7, type: 2}
+  Type: 0
   CanBuildUnits: 0
   UnitTypes: 

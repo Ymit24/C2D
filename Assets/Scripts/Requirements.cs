@@ -16,7 +16,7 @@ public class Requirements : MonoBehaviour {
 				if (colliders[i].gameObject == bc2d.gameObject) continue; // just incase we collide with our own colliders somehow
 				// if the ghost building is colliding with something
 				// like a wall or another building then bail.
-				if (colliders[i].CompareTag(Tags.UNPLACEABLE)) return false;
+                if (Tags.Compare(colliders[i].transform, TAGS.Unplaceable)) return false;
 			}
 		}
 		return true;

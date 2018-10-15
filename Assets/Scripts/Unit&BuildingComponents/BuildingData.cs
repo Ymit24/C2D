@@ -5,27 +5,10 @@ using UnityEngine;
 public enum BuildingType { CommandCenter, Barracks, TankFactory, PowerPlant }
 
 [CreateAssetMenu]
-public class BuildingData : ScriptableObject
+public class BuildingData : GameObjectData
 {
     [Header("Creation")]
-    public string BuildingName;
     public BuildingType Type;
-    public int Cost;
-    public Sprite Graphic;
-
-    [Header("Settings")]
-    public float HealthbarHeight;
-    public Vector2 BoxColliderSize;
-
-    [Header("Health")]
-    public float MaxHealth;
-    public float MaxHealthbarWidth;
-
-    [Header("Attack")]
-    public bool CanAttack;
-    public float Range;
-    public float Damage;
-    public float AttacksPerSecond;
 
     [Header("UnitFactory")]
     public bool CanBuildUnits;

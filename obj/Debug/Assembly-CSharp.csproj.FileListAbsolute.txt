@@ -329,3 +329,5 @@ C:\Dev\git\C2D\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
 C:\Dev\git\C2D\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Dev\git\C2D\obj\Debug\Assembly-CSharp.dll
 C:\Dev\git\C2D\obj\Debug\Assembly-CSharp.pdb
+C:\Dev\git\C2D\Temp\bin\Debug\Pathfinding.Ionic.Zip.Reduced.dll
+C:\Dev\git\C2D\Temp\bin\Debug\ZiosThemes.dll

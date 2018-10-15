@@ -143,11 +143,11 @@ public class SimpleAI : MonoBehaviour {
     private Crystal FindNearestCrystal()
     {
         GameObject map = MapController.Map;
-        Transform crystalHolder = Utils.findChild(map.transform, Tags.CRYSTALS);
+        Transform crystalHolder = Utils.findChild(map.transform, TAGS.Crystals);
         Crystal closest = null;
         if (crystalHolder != map.transform)
         {
-            Transform[] crystals = Utils.findChildren(crystalHolder, Tags.CRYSTAL);
+            Transform[] crystals = Utils.findChildren(crystalHolder, TAGS.Crystal);
             float distance = Mathf.Infinity;
             for (int i = 0; i < crystals.Length; i++)
             {
@@ -180,7 +180,11 @@ public class SimpleAI : MonoBehaviour {
         Unit[] units = MapController.UnitsForTeam(Team);
         for (int i = 0; i < units.Length; i++)
         {
-            units[i].SetMoveTarget(point);
+			Movement move = units[i].GetComponent<Movement>();
+			if (move != null)
+			{
+				move.SetMoveTarget(point);
+			}
         }
     }
 }

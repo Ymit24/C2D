@@ -162,7 +162,8 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\RetainedGizmos.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\New\ActivateBuilding.cs" />
-     <Compile Include="Assets\New\AI TESTING\Utility.cs" />
+     <Compile Include="Assets\New\Explosion.cs" />
+     <Compile Include="Assets\New\Projectile.cs" />
      <Compile Include="Assets\New\SimpleAI.cs" />
      <Compile Include="Assets\Scripts\Controllers\BuildController.cs" />
      <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
@@ -175,18 +176,25 @@
      <Compile Include="Assets\Scripts\Controllers\UIController.cs" />
      <Compile Include="Assets\Scripts\Controllers\UnitCreatorController.cs" />
      <Compile Include="Assets\Scripts\Crystal.cs" />
+     <Compile Include="Assets\Scripts\EventSystem\EventComponent.cs" />
+     <Compile Include="Assets\Scripts\EventSystem\Events.cs" />
+     <Compile Include="Assets\Scripts\EventSystem\EventSystem.cs" />
      <Compile Include="Assets\Scripts\MapConfiguration.cs" />
      <Compile Include="Assets\Scripts\PlayerData.cs" />
      <Compile Include="Assets\Scripts\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Requirements.cs" />
      <Compile Include="Assets\Scripts\Tags.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
-     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Attack.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Building.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\BuildingData.cs" />
-     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Health.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\Collisions.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\Combat.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\GameComponent.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\GameObjectData.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\Health.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\Owned.cs" />
+     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Generic\ProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Movement.cs" />
-     <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Owned.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Selectability.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\Unit.cs" />
      <Compile Include="Assets\Scripts\Unit&amp;BuildingComponents\UnitData.cs" />
@@ -411,6 +419,12 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="ZiosThemes">
+ <HintPath>C:/Dev/git/C2D/Assets/@Themes/ZiosThemes.dll</HintPath>
+ </Reference>
+ <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+ <HintPath>C:/Dev/git/C2D/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -419,9 +433,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Dev/git/C2D/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

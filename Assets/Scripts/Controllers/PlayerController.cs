@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C2D.Event;
 
 public class PlayerController : MonoBehaviour {
 	public List<PlayerData> players;
@@ -8,10 +9,12 @@ public class PlayerController : MonoBehaviour {
 
 	private Timer powerPlantTimer;
 
+	public int PaymentsPerMinute = 12;
+
 	protected void Awake()
 	{
 		instance = this;
-		powerPlantTimer = new Timer(10);
+		powerPlantTimer = new Timer(60 / PaymentsPerMinute);
 	}
 
 	public static PlayerData Data(int index)
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			foreach (PlayerData p in players)
 			{
-				p.Gold += p.Number_of_power_plants * 10;
+				p.Gold += p.GPM / PaymentsPerMinute;
             }
 			powerPlantTimer.Reset ();
 		}
@@ -36,12 +39,12 @@ public class PlayerController : MonoBehaviour {
     public static void GoldChanged(PlayerData data)
     {
         if (instance.players.IndexOf(data) != 0) return;
-        UIController.OnGoldCountChanged(instance.players[0].Gold);
+		EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.GOLD_TEXT, instance.players[0].Gold));
     }
 
     public static void GPMChanged(PlayerData data)
     {
         if (instance.players.IndexOf(data) != 0) return;
-        UIController.OnGPMCountChanged(instance.players[0].GPM);
+		EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.GPM_TEXT, instance.players[0].GPM));
     }
 }

@@ -12,6 +12,8 @@ public class MapController : MonoBehaviour {
     public GameObject UnitHolder;
     public GameObject BuildingHolder;
 
+    private static List<Combat> combatants = new List<Combat>();
+
     private MapConfiguration Config;
     private void Awake()
     {
@@ -86,5 +88,20 @@ public class MapController : MonoBehaviour {
             }
         }
         return units.ToArray();
+    }
+
+    public static Combat[] GetCombatants()
+    {
+        return combatants.ToArray();
+    }
+
+    public static void AddCombatant(Combat combatant)
+    {
+        combatants.Add(combatant);
+    }
+
+    public static void RemoveCombatant(Combat combatant)
+    {
+        combatants.Remove(combatant);
     }
 }

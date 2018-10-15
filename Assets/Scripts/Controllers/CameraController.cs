@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C2D.Event;
 
 public class CameraController : MonoBehaviour {
 
@@ -10,12 +11,12 @@ public class CameraController : MonoBehaviour {
 
     private Vector2 lastPos;
 
-    void Start()
+    private void Start()
     {
-        MouseController.ScrollListener += OnScroll;
+		EventSystem.Global.RegisterListener<MouseScrollEventInfo>(OnScroll);
     }
 
-    void Update()
+    private void Update()
     {
         Vector2 vel = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
@@ -41,12 +42,12 @@ public class CameraController : MonoBehaviour {
         transform.Translate(vel * PanSpeed * Time.deltaTime);
     }
     
-    void OnScroll(float delta)
+    private void OnScroll(MouseScrollEventInfo info)
     {
-        Zoom(delta);
+		Zoom(info.DeltaY);
     }
 
-    void Zoom(float delta)
+    private void Zoom(float delta)
     {
         float v = delta;
         Camera.main.orthographicSize += v * ZoomSpeed * Time.deltaTime;

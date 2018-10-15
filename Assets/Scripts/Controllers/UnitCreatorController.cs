@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using C2D.Event;
 
 public class UnitCreatorController : MonoBehaviour {
     public GameObject UnitPanel;
 	public List<UnitData> Units;
 
     public UnitFactory current;
+
+    public GameObject[] Projectiles;
 
     public GameObject UnitHolder;
     private static UnitCreatorController _instance;
@@ -21,10 +24,10 @@ public class UnitCreatorController : MonoBehaviour {
     }
     private void Start()
     {
-        MouseController.MouseClickDownListeners += OnClick;
+		EventSystem.Global.RegisterListener<MouseUpdateEventInfo>(OnClick);
         UnitPanel.SetActive(false);
     }
-    public static void PlaceUnit(UnitType type, Vector3 location, int owner)
+	public static Unit PlaceUnit(UnitType type, Vector3 location, int owner, int projectile_index = 0)
     {
         GameObject newUnit = new GameObject(UnitData.NameFromType(type));
         newUnit.transform.SetParent(_instance.UnitHolder.transform);
@@ -32,7 +35,9 @@ public class UnitCreatorController : MonoBehaviour {
         Unit u = newUnit.AddComponent<Unit>();
         u.Setup(_instance.Units[(int)type]);
         u.SetTeam(owner);
+        u.GetComponent<Combat>().WhatToFire = _instance.Projectiles[projectile_index];
         MapController.UnitsPerPlayer[owner].Add(type);
+		return u;
     }
     public void BuildUnit(int index)
     {
@@ -46,33 +51,19 @@ public class UnitCreatorController : MonoBehaviour {
 		} else {
 			return;
 		}
-        GameObject newUnit = new GameObject(UnitData.NameFromType(current.CanBuild[index]));
-        newUnit.transform.SetParent(UnitHolder.transform);
-        if (current != null)
-        {
-            newUnit.transform.position = current.transform.position + new Vector3(1, 1);
-        }
-        else
-        {
-            Debug.LogWarning("BuildUnit -- Current is null?!");
-        }
+		Unit u = PlaceUnit(current.CanBuild[index], current.transform.position + new Vector3(1, 1), 0);
 
-        Unit u = newUnit.AddComponent<Unit>();
-        u.Setup(Units[(int)current.CanBuild[index]]);
-        //GameObject g = Instantiate(Units[current.CanBuild[ab]].prefab, current.gameObject.transform.position + new Vector3(1, 1), Quaternion.identity);
-        u.SetTeam(0);
         UnitPanel.SetActive(false);
         UnitType type = u.Configuration.Type;
-        MapController.UnitsPerPlayer[0].Add(type);
-        if (UnitData.isSoldier(type))
-            UIController.OnSoldierCountChanged(MapController.SoldierCount(0));
+		if (UnitData.isSoldier(type))
+			EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.SOLDIER_TEXT, MapController.SoldierCount(0)));
         if (UnitData.isTank(type))
-            UIController.OnTankCountChanged(MapController.TankCount(0));
+			EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.TANK_TEXT, MapController.TankCount(0)));
     }
 
-    private void OnClick(int button, Vector2 position)
+	private void OnClick(MouseUpdateEventInfo info)
     {
-        if (button == 1)
+		if (info.Button == MouseButton.RIGHT)
         {
             current = null;
             RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition));
@@ -113,7 +104,7 @@ public class UnitCreatorController : MonoBehaviour {
             RectTransform rt = UnitPanel.GetComponent<RectTransform>();
             rt.position = Input.mousePosition + new Vector3( rt.rect.width / 2,- rt.rect.height / 2 );
         }
-        if (button == 0)
+		if (info.Button == MouseButton.LEFT)
         {
             //deselect = 1;
         }

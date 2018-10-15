@@ -58,4 +58,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8103d4baaf55241f9aaca1c03a837a70, type: 2}
   - {fileID: 11400000, guid: 453c6da3f03d949aa9ff98c711eef275, type: 2}
   current: {fileID: 0}
+  Projectiles:
+  - {fileID: 1723433018831822, guid: c03a159bad82c5242901f960cdeb7ec7, type: 2}
   UnitHolder: {fileID: 0}

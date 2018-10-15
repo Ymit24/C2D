@@ -1,45 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C2D.Event;
 
 public class Building : MonoBehaviour
 {
     public BuildingData Configuration;
-    private Attack AttackComp;
+    private Combat AttackComp;
 
     public void Setup(BuildingData Config)
     {
         Configuration = Config;
+		gameObject.AddComponent<EventSystem>();
         // Attack
-        if (Configuration.CanAttack)
-        {
-            AttackComp = gameObject.AddComponent<Attack>();
-            AttackComp.TargetingRange = Configuration.Range;
-            AttackComp.Damage = Configuration.Damage;
-            AttackComp.AttacksPerSecond = Configuration.AttacksPerSecond;
-            AttackComp.Setup();
-        }
+        AttackComp = gameObject.AddComponent<Combat>();
+		gameObject.AddComponent<ProjectileSpawner>();
         //Physics
         Rigidbody2D rig2d = gameObject.AddComponent<Rigidbody2D>();
         rig2d.simulated = true;
-        rig2d.bodyType = RigidbodyType2D.Static;
+		rig2d.bodyType = RigidbodyType2D.Kinematic;
+
+		// Collisions
+		gameObject.AddComponent<Collisions>();
+
         // add owned component
         gameObject.AddComponent<Owned>();
+
         // Health
-        GameObject hb = new GameObject("Healthbar");
-        hb.transform.SetParent(transform);
-        hb.tag = Tags.HEALTHBAR;
-        hb.transform.localPosition = new Vector2(0, Configuration.HealthbarHeight);
-
-        SpriteRenderer hb_spr = hb.AddComponent<SpriteRenderer>();
-        hb_spr.sprite = Resources.Load<Sprite>("Healthbar");
-        hb_spr.color = Color.red;
-        hb_spr.sortingOrder = 1;
-
         Health h = gameObject.AddComponent<Health>();
-        h.MaxHealth = Configuration.MaxHealth;
-        h.MaxSize = Configuration.MaxHealthbarWidth;
-        h.Setup();
+
+		AttackComp.Setup(Config);
+		h.Setup(Config);
 
         // UnitFactory
         if (Configuration.CanBuildUnits)
@@ -47,7 +38,6 @@ public class Building : MonoBehaviour
             UnitFactory factory = gameObject.AddComponent<UnitFactory>();
             factory.CanBuild = Configuration.UnitTypes;
         }
-        Begin();
     }
 
     private bool isInGhostMode = false;
@@ -84,11 +74,11 @@ public class Building : MonoBehaviour
         Owned o = GetComponent<Owned>();
         if (o != null)
         {
-            o.Team = team;
+			o.SetTeam(team);
         }
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).CompareTag(Tags.HEALTHBAR))
+            if (Tags.Compare(transform.GetChild(i), TAGS.Healthbar))
             {
                 SpriteRenderer spr = transform.GetChild(i).GetComponent<SpriteRenderer>();
                 if (spr != null)
@@ -97,10 +87,5 @@ public class Building : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Begin()
-    {
-
     }
 }

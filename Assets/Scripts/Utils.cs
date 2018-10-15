@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Utils
 {
-    public static Transform findChild(Transform parent, string tag)
+    public static Transform findChild(Transform parent, TAGS tag)
     {
         for (int i = 0; i < parent.childCount; i++)
         {
-            if (parent.GetChild(i).CompareTag(tag))
+            if (Tags.Compare(parent.GetChild(i), tag))
             {
                 return parent.GetChild(i);
             }
@@ -16,12 +16,12 @@ public class Utils
         return parent;
     }
 
-    public static Transform[] findChildren(Transform parent, string tag)
+    public static Transform[] findChildren(Transform parent, TAGS tag)
     {
         List<Transform> children = new List<Transform>();
         for (int i = 0; i < parent.childCount; i++)
         {
-            if (parent.GetChild(i).CompareTag(tag))
+            if (Tags.Compare(parent.GetChild(i), tag))
             {
                 children.Add(parent.GetChild(i));
             }
@@ -48,10 +48,10 @@ public class Utils
     public static Crystal CrystalInRange(Vector3 location)
     {
         GameObject map = MapController.Map;
-        Transform crystalHolder = Utils.findChild(map.transform, Tags.CRYSTALS);
+        Transform crystalHolder = Utils.findChild(map.transform, TAGS.Crystals);
         if (crystalHolder != map.transform)
         {
-            Transform[] crystals = Utils.findChildren(crystalHolder, Tags.CRYSTAL);
+            Transform[] crystals = Utils.findChildren(crystalHolder, TAGS.Crystal);
             for (int i = 0; i < crystals.Length; i++)
             {
                 if (Vector3.Distance(location, crystals[i].position) <= 2)

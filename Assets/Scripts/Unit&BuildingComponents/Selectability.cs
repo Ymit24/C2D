@@ -1,78 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C2D.Event;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Selectability : MonoBehaviour {
+public class Selectability : GameComponent {
 
-    //public bool _selected;
-    //public bool IsSelected
-    //{
-    //    get
-    //    {
-    //        return _selected;
-    //    }
-    //    private set
-    //    {
-    //        _selected = value;
-    //        if (graphic != null)
-    //        {
-    //            graphic.SetActive(value);
-    //        }
-    //    }
-    //}
+    private GameObject graphic;
+	private BoxCollider2D bc2d;
 
-    //private int deselect; // this is so we don't deselect before another script can handle selection on the same frame
-    //                       // e.g. soldier needing to set move target when we click but we unselect first.
+    private bool _selected;
+	public bool IsSelected
+	{
+		get
+		{
+			return _selected;
+		}
+		set
+		{
+			_selected = value;
+			if (graphic != null)
+			{
+				graphic.SetActive(value);
+			}
+		}
+	}
 
-    //private BoxCollider2D bc2d;
-    //private GameObject graphic;
+	private EventListener SelectCheckListener;
 
-    //void Awake()
-    //{
-    //    bc2d = GetComponent<BoxCollider2D>();
-    //    graphic = transform.Find("SelectedGraphic").gameObject;
-    //    SelectionBox.OnClearSelected += OnClearSelected;
+	public override void Setup(GameObjectData Config)
+	{
+		bc2d = GetComponent<BoxCollider2D>();
+		if (bc2d == null)
+		{
+			Debug.LogWarning("Selectability Setup: BoxCollider2D not found");
+		}
 
-    //    IsSelected = false;
-    //}
+		graphic = new GameObject("SelectedGraphic");
+		graphic.transform.SetParent(transform);
+		graphic.transform.localPosition = Vector2.zero;
+		graphic.tag = TAGS.SelectedGraphic.ToString();
 
-    //protected void Update()
-    //{
-    //    if (deselect == 1)
-    //    {
-    //        deselect++;
-    //    }
-    //    else if (deselect == 2)
-    //    {
-    //        deselect = 0;
-    //        IsSelected = false;
-    //    }
-    //}
+		SpriteRenderer sg_spr = graphic.AddComponent<SpriteRenderer>();
+		sg_spr.sprite = Resources.Load<Sprite>("SelectionBox");
+		sg_spr.drawMode = SpriteDrawMode.Sliced;
+		sg_spr.size = ((UnitData)Config).SelectedGraphicSize;
+		IsSelected = false;
 
-    //public void OnClearSelected()
-    //{
-    //    deselect = 1;
-    //    //IsSelected = false;
-    //}
+		SelectCheckListener = EventSystem.Global.RegisterListener<SelectEventInfo>(OnSelectCheck);
+	}
 
-    //void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    if (!bc2d.IsTouching(col))
-    //    {
-    //        return;
-    //    }
-    //    if (col.CompareTag("SelectionBox"))
-    //    {
-    //        IsSelected = true;
-    //    }
-    //}
+	private void OnDestroy()
+	{
+		EventSystem.Global.UnregisterListener<SelectEventInfo>(SelectCheckListener);
+	}
 
-    //void OnTriggerExit2D(Collider2D col)
-    //{
-    //    if (col.CompareTag("SelectionBox"))
-    //    {
-    //        IsSelected = false;
-    //    }
-    //}
+	private void OnSelectCheck(SelectEventInfo info)
+	{
+		if (Owner.Team != 0) return;
+		IsSelected = info.Bounds.Intersects(bc2d.bounds);
+	}
 }
