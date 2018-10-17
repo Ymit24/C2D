@@ -57,8 +57,8 @@ public class SimpleAI : MonoBehaviour {
                         PlaceUntilWorked(BuildingType.PowerPlant, Target.transform.position, 1.5f);
                         Target.TeamsWhoHaveAPowerPlantHere.Add(Team);
                         Target = null;
-
-                        PlayerController.AddGold(Team, -BuildController.GetBuildingCost(BuildingType.PowerPlant));
+						
+						Player.gold -= BuildController.GetBuildingCost(BuildingType.PowerPlant);
                         Substate1++;
                         if (Substate1 < 4)
                             State = 0;
@@ -71,7 +71,8 @@ public class SimpleAI : MonoBehaviour {
                     if (Player.gold >= BuildController.GetBuildingCost(BuildingType.Barracks))
                     {
                         PlaceUntilWorked(BuildingType.Barracks, CommandCenter.transform.position, 3);
-                        PlayerController.AddGold(Team, -BuildController.GetBuildingCost(BuildingType.Barracks));
+
+						Player.gold -= BuildController.GetBuildingCost(BuildingType.Barracks);
                         MoveAllUnitsTo(CommandCenter.transform.position);
                         State ++;
                     }
@@ -81,7 +82,7 @@ public class SimpleAI : MonoBehaviour {
                     if (Player.gold >= UnitCreatorController.GetUnitCost(UnitType.LightSoldier))
                     {
                         UnitCreatorController.PlaceUnit(UnitType.LightSoldier, Barracks.transform.position + SpawnCircle(1.5f), Team);
-                        PlayerController.AddGold(Team, -UnitCreatorController.GetUnitCost(UnitType.LightSoldier));
+						Player.gold -= UnitCreatorController.GetUnitCost (UnitType.LightSoldier);
                     }
                     break;
                 case 4: // repeat states 0,1 until substate > 5

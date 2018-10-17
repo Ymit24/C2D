@@ -177,7 +177,7 @@ public class BuildController : MonoBehaviour {
 		}
 		else
 		{
-			PlayerController.AddGold(team, -Buildings [_buildType].Cost);
+			data.gold -= Buildings [_buildType].Cost;
 			if (isPP & isNearCrystal && nearCrystalHasAFreeSpot) {
 				if (crystal != null)
 					crystal.TeamsWhoHaveAPowerPlantHere.Add (team);

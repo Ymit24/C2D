@@ -1,17 +1,14 @@
-﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupConfiguration="{B50A9FDE-9A03-225E-3568-5F1EC8277E7D}|Unit Tests">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/MapLoader.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="37" Column="51" />
+      <File FileName="Assets/New/SimpleAI.cs" Line="71" Column="33" />
+      <File FileName="Assets/Scripts/Controllers/MapLoader.cs" Line="43" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\New\SimpleAI.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Unit&amp;BuildingComponents\Generic\ProjectileSpawner.cs" Line="23" Column="37" />
-      <File FileName="Assets\Scripts\Controllers\PlayerController.cs" Line="37" Column="3" />
-      <File FileName="Assets\Scripts\PlayerData.cs" Line="14" Column="25" />
-      <File FileName="Assets\New\SimpleAI.cs" Line="62" Column="29" />
-      <File FileName="Assets\Scripts\Controllers\MapLoader.cs" Line="46" Column="46" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

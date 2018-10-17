@@ -49,7 +49,7 @@ public class UnitCreatorController : MonoBehaviour {
         PlayerData data = PlayerController.GetPlayer(0);
         if (data.gold >= cost)
         {
-            PlayerController.AddGold(0, -cost);
+			data.gold -= cost;
         }
         else
         {

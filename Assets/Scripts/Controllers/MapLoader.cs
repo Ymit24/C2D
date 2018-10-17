@@ -30,7 +30,7 @@ public class MapLoader : MonoBehaviour {
                 location.z = -10;
                 Camera.main.transform.position = location;
             }
-            PlayerController.SetGold(i, 1000);
+			PlayerController.GetPlayer(i).gold = 1000;
             Building building = BuildController.PlaceBuilding(BuildingType.CommandCenter, commandcenterspawn.position, (i == Config.SpawnPoint) ? 0 : team);
             if (i != Config.SpawnPoint)
             {
@@ -43,9 +43,9 @@ public class MapLoader : MonoBehaviour {
             {
                 // spawn units
                 UnitCreatorController.PlaceUnit(UnitType.LightSoldier, unitspawns[j].position, (i == Config.SpawnPoint) ? 0 : team);
-            }
-            PlayerController.SetGold(i, 500);
-            PlayerController.SetPowerPlantCount(i, 0);
+			}
+			PlayerController.GetPlayer(i).gold = 500;
+			PlayerController.GetPlayer (i).power_plants = 0;
             if (i != Config.SpawnPoint)
                 team++;
         }
