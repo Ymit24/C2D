@@ -2213,11 +2213,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114286045456104044, guid: 31b155bacb55f4f4fa9c97723f702622,
-        type: 2}
-      propertyPath: PaymentsPerMinute
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31b155bacb55f4f4fa9c97723f702622, type: 2}
   m_IsPrefabAsset: 0

@@ -46,11 +46,15 @@ public class UnitCreatorController : MonoBehaviour {
         if (index >= current.CanBuild.Count)
             return;
 		int cost = Units [(int)current.CanBuild [index]].Cost;
-		if (PlayerController.Data (0).Gold >= cost) {
-			PlayerController.Data (0).Gold -= cost;
-		} else {
-			return;
-		}
+        PlayerData data = PlayerController.GetPlayer(0);
+        if (data.gold >= cost)
+        {
+            PlayerController.AddGold(0, -cost);
+        }
+        else
+        {
+            return;
+        }
 		Unit u = PlaceUnit(current.CanBuild[index], current.transform.position + new Vector3(1, 1), 0);
 
         UnitPanel.SetActive(false);
@@ -121,5 +125,18 @@ public class UnitCreatorController : MonoBehaviour {
             deselect = 0;
             UnitPanel.SetActive(false);
         }
+    }
+
+    public static int GetUnitCost(UnitType type)
+    {
+        for (int i = 0; i < _instance.Units.Count; i++)
+        {
+            if (_instance.Units[i].Type == type)
+            {
+                return _instance.Units[i].Cost;
+            }
+        }
+        Debug.LogError("Couldn't find Unit with type of " + type + "!");
+        return -1;
     }
 }

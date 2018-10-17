@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbf6fe7e3ab24e1d826449bcd9a0a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players:
-  - {fileID: 11400000, guid: e891a9eceda0b4a76a801141a0b93ac2, type: 2}
-  - {fileID: 11400000, guid: 6c114e44589bd614bb5477c5a16c50fb, type: 2}
-  - {fileID: 11400000, guid: 587ab90f3ad81de4a95dcb26937e5bb5, type: 2}
-  - {fileID: 11400000, guid: 27b10f0efe5852049addd7b418944919, type: 2}
+  PlayerColors:
+  - {r: 0, g: 0.9013953, b: 1, a: 1}
+  - {r: 0.1710136, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.93442965, b: 0, a: 1}
+  PaymentsPerMinute: 12

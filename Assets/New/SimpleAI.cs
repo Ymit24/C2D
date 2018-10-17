@@ -19,10 +19,12 @@ public class SimpleAI : MonoBehaviour {
     public Crystal Target;
 
     public Building Barracks;
+    private PlayerData Player;
 
     protected void Start()
     {
         actionTimer = new Timer(2);
+        Player = PlayerController.GetPlayer(Team);
     }
 
     protected void Update()
@@ -50,12 +52,13 @@ public class SimpleAI : MonoBehaviour {
                     }
                     break;
                 case 1: // Build a power plant there, if substate < 2 state=0 else state=2
-                    if (PlayerController.Data(Team).Gold >= 100) // TODO: Don't hardcode this cost for power plant
+                    if (Player.gold >= BuildController.GetBuildingCost(BuildingType.PowerPlant))
                     {
                         PlaceUntilWorked(BuildingType.PowerPlant, Target.transform.position, 1.5f);
                         Target.TeamsWhoHaveAPowerPlantHere.Add(Team);
                         Target = null;
-                        PlayerController.Data(Team).Gold -= 100; // TODO: Same here, don't hardcode
+
+                        PlayerController.AddGold(Team, -BuildController.GetBuildingCost(BuildingType.PowerPlant));
                         Substate1++;
                         if (Substate1 < 4)
                             State = 0;
@@ -65,20 +68,20 @@ public class SimpleAI : MonoBehaviour {
                     break;
                 case 2: // build barracks and move units to command center
                     if (Barracks != null) State++;
-                    if (PlayerController.Data(Team).Gold >= 150) // TODO: STOP HARDCODING
+                    if (Player.gold >= BuildController.GetBuildingCost(BuildingType.Barracks))
                     {
                         PlaceUntilWorked(BuildingType.Barracks, CommandCenter.transform.position, 3);
-                        PlayerController.Data(Team).Gold -= 100; // TODO: Same here, don't hardcode
+                        PlayerController.AddGold(Team, -BuildController.GetBuildingCost(BuildingType.Barracks));
                         MoveAllUnitsTo(CommandCenter.transform.position);
                         State ++;
                     }
                     break;
                 case 3: // build up to 5 total units
                     if (MapController.UnitsForTeam(Team).Length >= 5) { State++; break; }
-                    if (PlayerController.Data(Team).Gold >= 50) // TODO: DONT HARDCODE
+                    if (Player.gold >= UnitCreatorController.GetUnitCost(UnitType.LightSoldier))
                     {
                         UnitCreatorController.PlaceUnit(UnitType.LightSoldier, Barracks.transform.position + SpawnCircle(1.5f), Team);
-                        PlayerController.Data(Team).Gold -= 50;
+                        PlayerController.AddGold(Team, -UnitCreatorController.GetUnitCost(UnitType.LightSoldier));
                     }
                     break;
                 case 4: // repeat states 0,1 until substate > 5
@@ -86,37 +89,6 @@ public class SimpleAI : MonoBehaviour {
                 case 5: // attack nearest enemy powerplant, if strength/unitcount > 5 repeat, else state=3
                     break;
             }
-
-//            Unit[] units = MapController.UnitsForTeam(Team);
-//            for (int i = 0; i < units.Length; i++)
-//            {
-//                Crystal c = Utils.CrystalInRange(units[i].transform.position);
-//                if (c != null && c.TeamsWhoHaveAPowerPlantHere.Contains(Team) == false)
-//                {
-//                    BuildController.PlaceBuilding(BuildingType.PowerPlant, units[i].transform.position, Team);
-//                    c.TeamsWhoHaveAPowerPlantHere.Add(Team);
-//                }
-//            }
-//
-//            // Find nearest available crystal
-//            GameObject map = MapController.Map;
-//            Transform crystalHolder = Utils.findChild(map.transform, Tags.CRYSTALS);
-//            if (crystalHolder != map.transform)
-//            {
-//                Transform[] crystals = Utils.findChildren(crystalHolder, Tags.CRYSTAL);
-//                Transform[] orderedCrystals = Utils.ClosestOrdered(crystals, CommandCenter.transform.position);
-//                for (int i = 0; i < orderedCrystals.Length; i++)
-//                {
-//                    Crystal c = orderedCrystals[i].GetComponent<Crystal>();
-//                    if (c.TeamsWhoHaveAPowerPlantHere.Contains(Team))
-//                        continue;
-//                    MoveAllUnitsTo(orderedCrystals[i].position);
-//                    break;
-//                }
-//            }
-            // if there is one, move all units to it
-            // once there build a powerplant whenver the ai can afford it
-            // repeat
         }
     }
 

@@ -46,7 +46,7 @@ public class Health : GameComponent {
 
 		SpriteRenderer hb_spr = hb.AddComponent<SpriteRenderer>();
 		hb_spr.sprite = Resources.Load<Sprite>("Healthbar");
-		hb_spr.color = PlayerController.Data(Owner.Team).color;
+		hb_spr.color = PlayerController.GetPlayerColor(Owner.Team);
 		hb_spr.sortingOrder = 1;
 
         for (int i = 0; i < transform.childCount; i++)

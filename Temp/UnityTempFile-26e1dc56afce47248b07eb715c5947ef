@@ -2,8 +2,12 @@
 -target:library
 -nowarn:0169
 -langversion:4
--out:Temp/Unity.TextMeshPro.dll
+-out:Temp/Assembly-CSharp.dll
 -nostdlib
+-r:Library/ScriptAssemblies/UnityEditor.StandardEvents.dll
+-r:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+-r:Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
+-r:Library/ScriptAssemblies/Unity.TextMeshPro.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -67,28 +71,15 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\Managed/UnityEditor.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\Managed/Unity.Locator.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:Assets/@Themes/ZiosThemes.dll
 -r:Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll
--r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
 -r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
--r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll
 -r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.1/UnityEngine.Purchasing.dll
--r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.1/Editor/UnityEditor.Purchasing.dll
 -r:C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\MonoBleedingEdge\lib\mono\unity\mscorlib.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.dll"
@@ -194,49 +185,152 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/FastAction.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/MaterialReferenceManager.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/PackageResourceImporterWindow.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TextContainer.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TextMeshPro.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TextMeshProUGUI.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Asset.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_ColorGradient.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Compatibility.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_CoroutineTween.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_DefaultControls.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Dropdown.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_FontAsset.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_InputField.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_InputValidator.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_LineInfo.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_ListPool.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_MaterialManager.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_MeshInfo.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_ObjectPool.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_ScrollbarEventHandler.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SelectionCaret.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Settings.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Sprite.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SpriteAnimator.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SpriteAsset.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SpriteAssetImportFormats.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Style.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_StyleSheet.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SubMesh.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_SubMeshUI.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_Text.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_TextElement.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_TextInfo.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_TextUtilities.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_UpdateManager.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_UpdateRegistery.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMP_XmlTagStack.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_EventManager.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_ExtensionMethods.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_FontUtilities.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_MeshUtilities.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_Private.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_ShaderUtilities.cs
-C:/Users/chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.1/Scripts/Runtime/TMPro_UGUI_Private.cs
+-define:ENABLE_VSTU
+Assets/AstarPathfindingProject/Behaviors/AIDestinationSetter.cs
+Assets/AstarPathfindingProject/Behaviors/Patrol.cs
+Assets/AstarPathfindingProject/changelog.cs
+Assets/AstarPathfindingProject/Core/AI/AIBase.cs
+Assets/AstarPathfindingProject/Core/AI/AILerp.cs
+Assets/AstarPathfindingProject/Core/AI/AIPath.cs
+Assets/AstarPathfindingProject/Core/AI/IAstarAI.cs
+Assets/AstarPathfindingProject/Core/AI/NavmeshController.cs
+Assets/AstarPathfindingProject/Core/AI/Seeker.cs
+Assets/AstarPathfindingProject/Core/AI/TurnBasedAI.cs
+Assets/AstarPathfindingProject/Core/astarclasses.cs
+Assets/AstarPathfindingProject/Core/AstarData.cs
+Assets/AstarPathfindingProject/Core/AstarMath.cs
+Assets/AstarPathfindingProject/Core/AstarPath.cs
+Assets/AstarPathfindingProject/Core/GraphUpdateScene.cs
+Assets/AstarPathfindingProject/Core/GraphUpdateShape.cs
+Assets/AstarPathfindingProject/Core/Misc/AnimationLink.cs
+Assets/AstarPathfindingProject/Core/Misc/ArrayPool.cs
+Assets/AstarPathfindingProject/Core/Misc/AstarDebugger.cs
+Assets/AstarPathfindingProject/Core/Misc/BinaryHeap.cs
+Assets/AstarPathfindingProject/Core/Misc/Draw.cs
+Assets/AstarPathfindingProject/Core/Misc/EditorResourceHelper.cs
+Assets/AstarPathfindingProject/Core/Misc/GraphEditorBase.cs
+Assets/AstarPathfindingProject/Core/Misc/GraphModifier.cs
+Assets/AstarPathfindingProject/Core/Misc/GraphUpdateProcessor.cs
+Assets/AstarPathfindingProject/Core/Misc/GraphUtilities.cs
+Assets/AstarPathfindingProject/Core/Misc/Int3.cs
+Assets/AstarPathfindingProject/Core/Misc/ListPool.cs
+Assets/AstarPathfindingProject/Core/Misc/MovementUtilities.cs
+Assets/AstarPathfindingProject/Core/Misc/NodeLink.cs
+Assets/AstarPathfindingProject/Core/Misc/NodeLink2.cs
+Assets/AstarPathfindingProject/Core/Misc/NodeLink3.cs
+Assets/AstarPathfindingProject/Core/Misc/ObjectPool.cs
+Assets/AstarPathfindingProject/Core/Misc/PathInterpolator.cs
+Assets/AstarPathfindingProject/Core/Misc/PathPool.cs
+Assets/AstarPathfindingProject/Core/Misc/PathProcessor.cs
+Assets/AstarPathfindingProject/Core/Misc/PathReturnQueue.cs
+Assets/AstarPathfindingProject/Core/Misc/StackPool.cs
+Assets/AstarPathfindingProject/Core/Misc/ThreadControlQueue.cs
+Assets/AstarPathfindingProject/Core/Misc/WindowsStoreCompatibility.cs
+Assets/AstarPathfindingProject/Core/Misc/WorkItemProcessor.cs
+Assets/AstarPathfindingProject/Core/Nodes/GraphNode.cs
+Assets/AstarPathfindingProject/Core/Path.cs
+Assets/AstarPathfindingProject/Core/PathHandler.cs
+Assets/AstarPathfindingProject/Core/RVO/RVOAgent.cs
+Assets/AstarPathfindingProject/Core/RVO/RVOCoreObstacle.cs
+Assets/AstarPathfindingProject/Core/RVO/RVOCoreSimulator.cs
+Assets/AstarPathfindingProject/Core/RVO/RVOLine.cs
+Assets/AstarPathfindingProject/Core/RVO/RVOQuadtree.cs
+Assets/AstarPathfindingProject/Core/Serialization/JsonConverters.cs
+Assets/AstarPathfindingProject/Core/Serialization/JsonSerializer.cs
+Assets/AstarPathfindingProject/Core/Serialization/SimpleJsonReplacement.cs
+Assets/AstarPathfindingProject/Core/Serialization/SimpleZipReplacement.cs
+Assets/AstarPathfindingProject/Core/Serialization/TinyJson.cs
+Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralGridMover.cs
+Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralWorld.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/AstarSmoothFollow2.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DoorController.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DynamicGridObstacle.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAI.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAnimation.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/ObjectPlacer.cs
+Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/TargetMover.cs
+Assets/AstarPathfindingProject/Generators/Base.cs
+Assets/AstarPathfindingProject/Generators/GridGenerator.cs
+Assets/AstarPathfindingProject/Generators/NavmeshBase.cs
+Assets/AstarPathfindingProject/Generators/NavMeshGenerator.cs
+Assets/AstarPathfindingProject/Generators/NodeClasses/GridNode.cs
+Assets/AstarPathfindingProject/Generators/NodeClasses/GridNodeBase.cs
+Assets/AstarPathfindingProject/Generators/NodeClasses/PointNode.cs
+Assets/AstarPathfindingProject/Generators/NodeClasses/TriangleMeshNode.cs
+Assets/AstarPathfindingProject/Generators/PointGenerator.cs
+Assets/AstarPathfindingProject/Generators/QuadtreeGraph.cs
+Assets/AstarPathfindingProject/Generators/Utilities/BBTree.cs
+Assets/AstarPathfindingProject/Generators/Utilities/EuclideanEmbedding.cs
+Assets/AstarPathfindingProject/Generators/Utilities/GraphTransform.cs
+Assets/AstarPathfindingProject/Generators/Utilities/GridLookup.cs
+Assets/AstarPathfindingProject/Generators/Utilities/NavMeshRenderer.cs
+Assets/AstarPathfindingProject/Generators/Utilities/NavmeshTile.cs
+Assets/AstarPathfindingProject/Generators/Utilities/ObjImporter.cs
+Assets/AstarPathfindingProject/Generators/Utilities/PointKDTree.cs
+Assets/AstarPathfindingProject/Legacy/LegacyAIPath.cs
+Assets/AstarPathfindingProject/Legacy/MiscLegacy.cs
+Assets/AstarPathfindingProject/Modifiers/AlternativePath.cs
+Assets/AstarPathfindingProject/Modifiers/FunnelModifier.cs
+Assets/AstarPathfindingProject/Modifiers/Modifiers.cs
+Assets/AstarPathfindingProject/Modifiers/RaycastModifier.cs
+Assets/AstarPathfindingProject/Modifiers/SimpleSmoothModifier.cs
+Assets/AstarPathfindingProject/Modifiers/StartEndModifier.cs
+Assets/AstarPathfindingProject/Navmesh/RelevantGraphSurface.cs
+Assets/AstarPathfindingProject/PackageTools/EnumFlagAttribute.cs
+Assets/AstarPathfindingProject/PackageTools/UniqueComponentAttribute.cs
+Assets/AstarPathfindingProject/PackageTools/VersionedMonoBehaviour.cs
+Assets/AstarPathfindingProject/Pathfinders/ABPath.cs
+Assets/AstarPathfindingProject/TurnBased/BlockManager.cs
+Assets/AstarPathfindingProject/TurnBased/SingleNodeBlocker.cs
+Assets/AstarPathfindingProject/Utilities/AstarChecksum.cs
+Assets/AstarPathfindingProject/Utilities/AstarMemory.cs
+Assets/AstarPathfindingProject/Utilities/AstarParallel.cs
+Assets/AstarPathfindingProject/Utilities/AstarProfiler.cs
+Assets/AstarPathfindingProject/Utilities/DotNetReplacements.cs
+Assets/AstarPathfindingProject/Utilities/Funnel.cs
+Assets/AstarPathfindingProject/Utilities/GraphGizmoHelper.cs
+Assets/AstarPathfindingProject/Utilities/GraphUpdateUtilities.cs
+Assets/AstarPathfindingProject/Utilities/PathUtilities.cs
+Assets/AstarPathfindingProject/Utilities/ProfileHelper.cs
+Assets/AstarPathfindingProject/Utilities/RetainedGizmos.cs
+Assets/AstarPathfindingProject/Utilities/UnityReferenceHelper.cs
+Assets/New/ActivateBuilding.cs
+Assets/New/Explosion.cs
+Assets/New/Projectile.cs
+Assets/New/SimpleAI.cs
+Assets/Scripts/Controllers/BuildController.cs
+Assets/Scripts/Controllers/CameraController.cs
+Assets/Scripts/Controllers/MapController.cs
+Assets/Scripts/Controllers/MapLoader.cs
+Assets/Scripts/Controllers/MenuController.cs
+Assets/Scripts/Controllers/MouseController.cs
+Assets/Scripts/Controllers/PlayerController.cs
+Assets/Scripts/Controllers/SelectionBox.cs
+Assets/Scripts/Controllers/UIController.cs
+Assets/Scripts/Controllers/UnitCreatorController.cs
+Assets/Scripts/Crystal.cs
+Assets/Scripts/EventSystem/EventComponent.cs
+Assets/Scripts/EventSystem/Events.cs
+Assets/Scripts/EventSystem/EventSystem.cs
+Assets/Scripts/MapConfiguration.cs
+Assets/Scripts/PlaySound.cs
+Assets/Scripts/Requirements.cs
+Assets/Scripts/Tags.cs
+Assets/Scripts/Timer.cs
+"Assets/Scripts/Unit&BuildingComponents/Building.cs"
+"Assets/Scripts/Unit&BuildingComponents/BuildingData.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/Collisions.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/Combat.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/GameComponent.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/GameObjectData.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/Health.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/Owned.cs"
+"Assets/Scripts/Unit&BuildingComponents/Generic/ProjectileSpawner.cs"
+"Assets/Scripts/Unit&BuildingComponents/Movement.cs"
+"Assets/Scripts/Unit&BuildingComponents/Selectability.cs"
+"Assets/Scripts/Unit&BuildingComponents/Unit.cs"
+"Assets/Scripts/Unit&BuildingComponents/UnitData.cs"
+"Assets/Scripts/Unit&BuildingComponents/UnitFactory.cs"
+Assets/Scripts/UnitBuildButton.cs
+Assets/Scripts/Utils.cs
 -lib:"C:\Program Files\Unity\Hub\Editor\2018.2.8f1\Editor\Data\MonoBleedingEdge\lib\mono\unity"

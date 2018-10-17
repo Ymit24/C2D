@@ -14,9 +14,10 @@ public class MapLoader : MonoBehaviour {
         Transform playerspawns = Utils.findChild(map.transform, TAGS.PlayerSpawns);
         int team = 1;
 
-//        GameObject go = new GameObject("SimpleAI");
-//        SimpleAI ai = go.AddComponent<SimpleAI>();
-//        ai.Team = 1;
+        //        GameObject go = new GameObject("SimpleAI");
+        //        SimpleAI ai = go.AddComponent<SimpleAI>();
+        //        ai.Team = 1;
+        PlayerController.Setup(playerspawns.childCount);
         for (int i = 0; i < playerspawns.childCount; i++)
         {
             if (i >= Config.PlayerCount)
@@ -29,7 +30,7 @@ public class MapLoader : MonoBehaviour {
                 location.z = -10;
                 Camera.main.transform.position = location;
             }
-            PlayerController.Data(i).Gold = 1000;
+            PlayerController.SetGold(i, 1000);
             Building building = BuildController.PlaceBuilding(BuildingType.CommandCenter, commandcenterspawn.position, (i == Config.SpawnPoint) ? 0 : team);
             if (i != Config.SpawnPoint)
             {
@@ -43,8 +44,8 @@ public class MapLoader : MonoBehaviour {
                 // spawn units
                 UnitCreatorController.PlaceUnit(UnitType.LightSoldier, unitspawns[j].position, (i == Config.SpawnPoint) ? 0 : team);
             }
-            PlayerController.Data(i).Gold = 500;
-            PlayerController.Data(i).Number_of_power_plants = 0;
+            PlayerController.SetGold(i, 500);
+            PlayerController.SetPowerPlantCount(i, 0);
             if (i != Config.SpawnPoint)
                 team++;
         }

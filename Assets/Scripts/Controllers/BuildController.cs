@@ -170,17 +170,18 @@ public class BuildController : MonoBehaviour {
 
 			if (isNearFriendlyBuilding == false && isPP == false) return false; // Unless we are building a power plant
         }
-		if (PlayerController.Data (team).Gold < Buildings [_buildType].Cost)
+        PlayerData data = PlayerController.GetPlayer(team);
+		if (data.gold < Buildings [_buildType].Cost)
 		{
 			return false;
 		}
 		else
 		{
-			PlayerController.Data (team).Gold -= Buildings [_buildType].Cost;
+			PlayerController.AddGold(team, -Buildings [_buildType].Cost);
 			if (isPP & isNearCrystal && nearCrystalHasAFreeSpot) {
 				if (crystal != null)
 					crystal.TeamsWhoHaveAPowerPlantHere.Add (team);
-				PlayerController.Data (team).Number_of_power_plants++;
+                data.power_plants++;
 			}
         }
         bc2d.enabled = true;
@@ -194,5 +195,18 @@ public class BuildController : MonoBehaviour {
 			EventSystem.Global.FireEvent(new UIUpdateEventInfo(UiUpdateType.BUILDING_TEXT, MapController.BuildingsPerPlayer[team].Count));
         }
         return true;
+    }
+
+    public static int GetBuildingCost(BuildingType type)
+    {
+        for (int i = 0; i < _instance.Buildings.Count; i++)
+        {
+            if (_instance.Buildings[i].Type == type)
+            {
+                return _instance.Buildings[i].Cost;
+            }
+        }
+        Debug.LogError("Couldn't find Building with type of " + type + "!");
+        return -1;
     }
 }

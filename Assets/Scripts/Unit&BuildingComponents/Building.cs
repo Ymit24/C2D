@@ -83,7 +83,8 @@ public class Building : MonoBehaviour
                 SpriteRenderer spr = transform.GetChild(i).GetComponent<SpriteRenderer>();
                 if (spr != null)
                 {
-                    spr.color = PlayerController.Data(team).color;
+                    spr.color = PlayerController.GetPlayerColor(team);
+                    //spr.color = PlayerController.Data(team).color;
                 }
             }
         }
